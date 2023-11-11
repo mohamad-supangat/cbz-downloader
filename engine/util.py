@@ -9,9 +9,17 @@ def regexGroup(pattern, target, group=1):
     if m:
         return m.group(group)
 
+def regexGroupSearch(pattern, target, group=1):
+    """ Given a pattern and a string, return capturing group 1 by default
+    """
+    m = re.search(pattern, target)
+    if m:
+        return m.group(group)
+
+
 def naturalSort(array, keypattern='.*?([0-9]+)', group=1):
     """ Use a natural sorting on first number in the string,
-    
+
     Or, specify a pattern, and matching using the contents of the capturing group as the key
     """
     def naturalSortKey(string):

@@ -59,10 +59,11 @@ class Comic(ComicSite):
             if re.match("/ch/%s-chapter-[0-9.]+" % self.name, path):
                 urls.append("https://%s%s"%(self.domain, path) )
 
+        # lakukan reverse url agar urutan tidak terbalik
         urls.reverse()
         # util.naturalSort(urls, ".+/ch-chapter-([0-9.]+)$")
 
-        print(urls)
+        # print(urls)
 
         return urls
 
@@ -78,12 +79,12 @@ class Chapter(ComicSite):
             )
 
     def getChapterNumber(self):
-        return util.regexGroup(".+/chapter-([0-9.]+)", self.url)
+        return util.regexGroupSearch(r'chapter-(\d+)', self.url)
 
     def getPageUrls(self):
         doc = self.getDomObject()
 
-        image_nodes = doc.cssselect("img.fullsizable")
+        image_nodes = doc.cssselect("#Baca_Komik img")
 
         page_urls = []
         # All pages are in one page - encode them and stuff them in a bogus query string
@@ -94,23 +95,18 @@ class Chapter(ComicSite):
             pagenum = i
             i += 1
 
-            if re.match(".+/nextchap.png", imgurl):
-                continue
+            page_urls.append(imgurl)
 
-            page_urls.append("%s?u=%s&n=%s"%(self.url , base64.urlsafe_b64encode(imgurl.encode("utf-8")).decode("utf-8"), pagenum) )
-
+        # print(page_urls)
         return page_urls
 
 class Page(ComicSite):
 
     def __init__(self, url):
         ComicSite.__init__(self, url)
-        self.pagenum = util.regexGroup(".+n=([0-9]+)", self.url)
-        self.imgurl = base64.urlsafe_b64decode( util.regexGroup(".+u=([^&]+)", self.url) ).decode("utf-8")
 
     def getPageNumber(self):
-        return self.pagenum
+        return util.regexGroupSearch(r'(\d+)-(\d+)\.jpg', self.url, 2)
 
     def getImageUrl(self):
-        return self.imgurl
-
+        return self.url

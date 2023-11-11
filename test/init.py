@@ -1,14 +1,12 @@
 import re
 
-pattern = "https://%s/manga/([^/]+)" % "komiku.id"
-target = "https://komiku.id/manga/all-hail-the-sect-leader/"
-m = re.match(pattern, target)
-name = None
-if m:
-    name = m.group(1)
-    print(name)
+def regexGroup(pattern, target, group=1):
+    """ Given a pattern and a string, return capturing group 1 by default
+    """
+    m = re.search(pattern, target)
+    print(m)
 
+    if m:
+        return m.group(group)
 
-print(re.match("/ch/%s-chapter-[0-9.]+" % name, "/ch/all-hail-the-sect-leader-chapter-285/"))
-
-
+print(regexGroup(r'chapter-(\d+)', "https://komiku.id/ch/all-hail-the-sect-leader-chapter-204/"))
