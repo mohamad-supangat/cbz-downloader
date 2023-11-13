@@ -9,6 +9,6 @@ def regexGroup(pattern, target, group=1):
     if m:
         return m.group(group)
 
-print(regexGroup(r'chapter-(\d+)', "https://komiku.id/ch/all-hail-the-sect-leader-chapter-204/"))
-print(regexGroup(r'(\d+)-(\d+)', " https://img.komiku.id/uploads2/2655177-1.png", 2))
-print(regexGroup(r'(\d+)-(\d+)', " https://img.komiku.id/uploads2/2655177-123.jpg", 2))
+print(regexGroup(r'(\d+)\.(jpg|jpeg|png|gif|webp)$', "https://yuucdn.org/images/105/23/milf-hunting-in-another-world/00_001.png", 1))
+
+# print(regexGroup(r'(\d+)-(\d+)', " https://img.komiku.id/uploads2/2655177-123.jpg", 2))
