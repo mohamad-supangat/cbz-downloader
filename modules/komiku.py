@@ -106,7 +106,7 @@ class Page(ComicSite):
         ComicSite.__init__(self, url)
 
     def getPageNumber(self):
-        return util.regexGroupSearch(r'(\d+)-(\d+)\.jpg', self.url, 2)
+        return util.regexGroupSearch(r'(\d+)-(\d+)', self.url, 2)
 
     def getImageUrl(self):
         return self.url

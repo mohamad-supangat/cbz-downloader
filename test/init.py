@@ -10,3 +10,5 @@ def regexGroup(pattern, target, group=1):
         return m.group(group)
 
 print(regexGroup(r'chapter-(\d+)', "https://komiku.id/ch/all-hail-the-sect-leader-chapter-204/"))
+print(regexGroup(r'(\d+)-(\d+)', " https://img.komiku.id/uploads2/2655177-1.png", 2))
+print(regexGroup(r'(\d+)-(\d+)', " https://img.komiku.id/uploads2/2655177-123.jpg", 2))
