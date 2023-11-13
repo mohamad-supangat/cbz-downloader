@@ -51,7 +51,7 @@ class Comic(ComicSite):
         doc = self.getDomObject()
 
         # dapatkan url chapther
-        chapters = doc.cssselect("#chapterlist > ul a")
+        chapters = doc.get_element_by_id("chapterlist").cssselect("ul a")
 
         urls = []
 
