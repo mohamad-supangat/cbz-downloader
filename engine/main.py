@@ -61,7 +61,7 @@ def downloadChapter(cengine, chapter_url, comic_dir):
     """ Kicks off the page downloads for a chapter
 
     Checks whether chapter number is within specified bounds
-    
+
     On completion, if there were no page download errors, attempts CBZ creation
 
     Returns number of errors encountered
@@ -74,12 +74,12 @@ def downloadChapter(cengine, chapter_url, comic_dir):
 
     chapter     = cengine.Chapter(chapter_url)
     chapter_num = float(chapter.getChapterNumber() )
-    
+
     if chapter_num < ch_start:
         return 0
     elif chapter_num > ch_end:
         return 'max'
-    
+
     # IF no start was specified THEN use the last success as base
     if ch_start == -1 and chapter_num <= dlstate.get("last"):
         return 0
@@ -160,7 +160,7 @@ def parseArguments():
     parser.add_argument("url", type=str, help="The URL of the comic to download")
     parser.add_argument("-s", "--start", action="store", default=-1, type=float, help="Minimum chapter to start from")
     parser.add_argument("-e", "--end", action="store", default=9000, type=float, help="Maximum chapter to include (up to 9000)")
-    parser.add_argument("-d", "--delay", action='store', type=int, default=-1, help="Delay to introduce during download (seconds)")
+    parser.add_argument("-d", "--delay", action='store', type=float, default=-1, help="Delay to introduce during download (seconds)")
     parser.add_argument("-v", "--verbose", action='store_true', help="Verbose mode")
     parser.add_argument("-f", "--failed", action='store_true', help="Check for failed items")
     parser.add_argument("-l", "--last", action='store_true', help="Display last successfully downloded chapter")
