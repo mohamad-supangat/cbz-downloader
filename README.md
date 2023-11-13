@@ -22,6 +22,10 @@ This is the list of sites cbzdl knows how to download from. The author's main in
 * MangaReader.net
 * MangaPanda.com
 
+#### Indonesia
+
+* komiku.id
+
 ## Installing
 
 You will need [Python 3](https://www.python.org/) and `pip3`
